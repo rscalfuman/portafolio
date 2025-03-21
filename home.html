@@ -146,39 +146,13 @@ body.mobile [data-backdrop="wallpaper"] .background_splash.transition {
 	</div>
 
 
-		<script>
-			window.scrollMonitor=function(){var t,i,o,e,s,n=function(){return window.pageYOffset||document.documentElement&&document.documentElement.scrollTop||document.body.scrollTop},h={},c=[],l="visibilityChange",r="enterViewport",a="fullyEnterViewport",p="exitViewport",w="partiallyExitViewport",u="locationChange",m="stateChange",f=[l,r,a,p,w,u,m],d={top:0,bottom:0},b=function(){return window.innerHeight||document.documentElement.clientHeight},v=function(){return Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight,document.documentElement.clientHeight)};function g(){if(h.viewportTop=n(),h.viewportBottom=h.viewportTop+h.viewportHeight,h.documentHeight=v(),h.documentHeight!==t){for(o=c.length;o--;)c[o].recalculateLocation();t=h.documentHeight}}function V(){h.viewportHeight=b(),g(),k()}function I(){clearTimeout(e),e=setTimeout(V,100)}function k(){for(s=c.length;s--;)c[s].update();for(s=c.length;s--;)c[s].triggerCallbacks()}function y(t,o){var e,s,n,c,b,v,g=this;this.watchItem=t,this.offsets=o?o===+o?{top:o,bottom:o}:{top:o.top||d.top,bottom:o.bottom||d.bottom}:d,this.callbacks={};for(var V=0,I=f.length;V<I;V++)g.callbacks[f[V]]=[];function k(t){if(0!==t.length)for(b=t.length;b--;)(v=t[b]).callback.call(g,i),v.isOne&&t.splice(b,1)}this.locked=!1,this.triggerCallbacks=function(){switch(this.isInViewport&&!e&&k(this.callbacks[r]),this.isFullyInViewport&&!s&&k(this.callbacks[a]),this.isAboveViewport!==n&&this.isBelowViewport!==c&&(k(this.callbacks[l]),s||this.isFullyInViewport||(k(this.callbacks[a]),k(this.callbacks[w])),e||this.isInViewport||(k(this.callbacks[r]),k(this.callbacks[p]))),!this.isFullyInViewport&&s&&k(this.callbacks[w]),!this.isInViewport&&e&&k(this.callbacks[p]),this.isInViewport!==e&&k(this.callbacks[l]),!0){case e!==this.isInViewport:case s!==this.isFullyInViewport:case n!==this.isAboveViewport:case c!==this.isBelowViewport:k(this.callbacks[m])}e=this.isInViewport,s=this.isFullyInViewport,n=this.isAboveViewport,c=this.isBelowViewport},this.recalculateLocation=function(){if(!this.locked){var t=this.top,i=this.bottom;if(this.watchItem.nodeName){var o=this.watchItem.style.display;"none"===o&&(this.watchItem.style.display="");var e=this.watchItem.getBoundingClientRect();this.top=e.top+h.viewportTop,this.bottom=e.bottom+h.viewportTop,"none"===o&&(this.watchItem.style.display=o)}else this.watchItem===+this.watchItem?this.watchItem>0?this.top=this.bottom=this.watchItem:this.top=this.bottom=h.documentHeight-this.watchItem:(this.top=this.watchItem.top,this.bottom=this.watchItem.bottom);this.top-=this.offsets.top,this.bottom+=this.offsets.bottom,this.height=this.bottom-this.top,void 0===t&&void 0===i||this.top===t&&this.bottom===i||k(this.callbacks[u])}},this.recalculateLocation(),this.update(),e=this.isInViewport,s=this.isFullyInViewport,n=this.isAboveViewport,c=this.isBelowViewport}h.viewportTop=null,h.viewportBottom=null,h.documentHeight=null,h.viewportHeight=b(),y.prototype={on:function(t,o,e){switch(!0){case t===l&&!this.isInViewport&&this.isAboveViewport:case t===r&&this.isInViewport:case t===a&&this.isFullyInViewport:case t===p&&this.isAboveViewport&&!this.isInViewport:case t===w&&this.isAboveViewport:if(o.call(this,i),e)return}if(!this.callbacks[t])throw new Error("Tried to add a scroll monitor listener of type "+t+". Your options are: "+f.join(", "));this.callbacks[t].push({callback:o,isOne:e||!1})},off:function(t,i){if(!this.callbacks[t])throw new Error("Tried to remove a scroll monitor listener of type "+t+". Your options are: "+f.join(", "));for(var o,e=0;o=this.callbacks[t][e];e++)if(o.callback===i){this.callbacks[t].splice(e,1);break}},one:function(t,i){this.on(t,i,!0)},recalculateSize:function(){this.height=this.watchItem.offsetHeight+this.offsets.top+this.offsets.bottom,this.bottom=this.top+this.height},update:function(){this.isAboveViewport=this.top<h.viewportTop,this.isBelowViewport=this.bottom>h.viewportBottom,this.isInViewport=this.top<=h.viewportBottom&&this.bottom>=h.viewportTop,this.isFullyInViewport=this.top>=h.viewportTop&&this.bottom<=h.viewportBottom||this.isAboveViewport&&this.isBelowViewport},destroy:function(){var t=c.indexOf(this);c.splice(t,1);for(var i=0,o=f.length;i<o;i++)this.callbacks[f[i]].length=0},lock:function(){this.locked=!0},unlock:function(){this.locked=!1}};for(var H=function(t){return function(i,o){this.on.call(this,t,i,o)}},E=0,T=f.length;E<T;E++){var B=f[E];y.prototype[B]=H(B)}try{g()}catch(t){try{window.$(g)}catch(t){throw new Error("If you must put scrollMonitor in the <head>, you must use jQuery.")}}function A(t){i=t,g(),k()}return"#throttle-scroll-monitor"===window.location.hash&&(A=_.throttle(A,66)),window.addEventListener?(window.addEventListener("scroll",A),window.addEventListener("resize",I)):(window.attachEvent("onscroll",A),window.attachEvent("onresize",I)),h.beget=h.create=function(t,i){"string"==typeof t?t=document.querySelector(t):t&&t.length>0&&(t=t[0]);var o=new y(t,i);return c.push(o),o.update(),o},h.update=function(){i=null,g(),k()},h.recalculateLocations=function(){h.documentHeight=0,h.update()},h}();
-		</script>
-
-		<customhtml></customhtml>		
-		<div class="loading" data-loading="page" style="display: none;">
-<div class="loading_animation pulsing <%= extra_class %> ">
-	<div>
-		<svg class="loading" width="500" height="500" viewBox="0 0 500 500">
-		      <path d="M495,201.19a257.61,257.61,0,0,0-14.19-47.05,260.51,260.51,0,0,0-23.17-42.9,253.09,253.09,0,0,0-69.06-68.85,245.21,245.21,0,0,0-42.88-23A227.1,227.1,0,0,0,298.88,5.26,241.81,241.81,0,0,0,249.5.31V0C111.7,0,0,111.7,0,249.5H.32a242.23,242.23,0,0,0,4.93,49.36A227.43,227.43,0,0,0,19.82,345a247.09,247.09,0,0,0,23,43,253.65,253.65,0,0,0,68.87,68.85,260.28,260.28,0,0,0,43,23.19,258.59,258.59,0,0,0,47,14.17,254.37,254.37,0,0,0,47.86,4.69V499c7.64,0,15.16-.47,22.62-1.14.88-.08,1.77-.05,2.66-.14,1.3-.13,2.56-.41,3.86-.56,6.82-.77,13.63-1.66,20.42-3A255.67,255.67,0,0,0,345.86,480a246.52,246.52,0,0,0,42.95-23.19A253.15,253.15,0,0,0,457.64,388a246.55,246.55,0,0,0,23.21-43A256.9,256.9,0,0,0,495,298.19a250.34,250.34,0,0,0,4.71-48.69A246.63,246.63,0,0,0,495,201.19ZM484.14,249.5H249.5V483.27a238.72,238.72,0,0,1-44.83-4.37,245.21,245.21,0,0,1-44-13.26,246.55,246.55,0,0,1-40.28-21.75,237.64,237.64,0,0,1-64.61-64.62,231.25,231.25,0,0,1-21.6-40.37,212.18,212.18,0,0,1-13.63-43.15,226.46,226.46,0,0,1-4.61-46.25H249.5V15.92c.2,0,.39,0,.59,0a227.57,227.57,0,0,1,45.79,4.67,212.11,212.11,0,0,1,43.79,13.26,228.85,228.85,0,0,1,40.22,21.52,237.92,237.92,0,0,1,64.82,64.6,246.65,246.65,0,0,1,21.72,40.2,243.26,243.26,0,0,1,13.28,44.09,231,231,0,0,1,4.43,45.26Z"></path>
-		</svg>
-	</div>
-</div>		</div>
 		
-		<div id="site_menu_wrapper" class=" mobile_only" data-sitemenu-position="top-right" data-type="page" data-set="SiteMenu" data-view="SiteMenu">
 
-	<a href="/" rel="site_menu" id="site_menu_button" class="" style="">
-
-			︎
-	</a>
-	
-	<div id="site_menu_panel_container" data-type="page" style="display: none;"><!-- empty container for site menu --></div>
+		
+		
 
 </div>
-		<a id="shop_button" rel="show_cart" href="" class="disabled text " style="">
-			</a>
-		<div class="main_container">
-
-			<div data-view="pinned_top" data-set="Scaffolding" data-position="top" class="pinned pinned_top" style="height: 0px;">
-				<div class="page_container overlay accommodate fixed pointer-events-none" local-style="28627553" style="top: 0px; z-index: 4;">
-	<div class="page container container_width clearfix" data-container="content" data-id="28627553">
-		<bodycopy class="bodycopy content content_padding" style="">
-
+		
 			
 			<div class="page_content clearfix" data-elementresizer="" data-resize-parent="" data-ce-host="true" data-ce-model-id="28627553">
 				<div grid-row="" grid-pad="2" grid-gutter="4" grid-responsive="">
